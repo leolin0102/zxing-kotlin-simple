@@ -21,8 +21,7 @@ import android.app.ActivityManager.TaskDescription
 import android.content.res.Resources
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
-
-
+import android.util.Log
 
 
 class MainActivity : BaseActivity() {
@@ -31,7 +30,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        Log.d("MainActivity", stringFromJNI())
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             val bm = BitmapFactory.decodeResource(resources, R.drawable.logo)
             val taskDesc = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -165,4 +164,14 @@ class MainActivity : BaseActivity() {
             }
         }
     }
-}
+    external fun stringFromJNI(): String
+
+    companion object {
+
+        // Used to load the 'native-lib' library on application startup.
+        init {
+            System.loadLibrary("qr")
+        }
+    }}
+
+

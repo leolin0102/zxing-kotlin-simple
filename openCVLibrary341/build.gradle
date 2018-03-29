@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 
@@ -7,17 +7,11 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.showlin.zxing_kotlin_simple"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        externalNativeBuild {
-            cmake {
-                cppFlags ""
-            }
-        }
     }
     buildTypes {
         release {
@@ -29,11 +23,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-    externalNativeBuild {
-        cmake {
-            path 'CMakeLists.txt'
-        }
     }
 }
 
@@ -47,6 +36,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.journeyapps:zxing-android-embedded:3.5.0@aar'
     compile 'com.google.zxing:core:3.3.0'
-    compile project(':openCVLibrary341')
     implementation 'com.android.support:recyclerview-v7:26.1.0'
 }
